@@ -1,0 +1,7 @@
+.build/
+build/
+.swiftpm/
+.DS_Store
+*.xcodeproj
+dist/
+NOTAS-RELEASE*
