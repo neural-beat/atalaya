@@ -12,16 +12,10 @@ APP="Atalaya"
 BUNDLE_ID="com.neuralbeat.atalaya"
 IDENTITY="Atalaya Signing"        # la crea Tools/setup-signing.sh
 SIGNING_KEYCHAIN="$HOME/Library/Keychains/atalaya-signing.keychain-db"
-VERSION="0.1.0"
+VERSION="1.0.0"
 BUILD="1"
 DESTINO="build/$APP.app"
-EDICION="publica"
 SWIFT_FLAGS=()
-if [[ "${1:-}" == "--completa" ]]; then
-    EDICION="completa"
-    SWIFT_FLAGS=(-Xswiftc -DCOMPLETA)
-    DESTINO="build/$APP Completa.app"
-fi
 
 # Compilar para las dos arquitecturas necesita el sistema de compilación de
 # Xcode, no solo las Command Line Tools.
@@ -32,13 +26,13 @@ fi
 
 echo "▸ Compilando…"
 ARCOS=(--arch x86_64 --arch arm64)
-if ! swift build -c release "${ARCOS[@]}" "${SWIFT_FLAGS[@]}" >/dev/null 2>&1; then
+if ! swift build -c release "${ARCOS[@]}" >/dev/null 2>&1; then
     echo "  ⚠ sin compilación cruzada: este paquete será solo $(uname -m)."
     echo "    Para publicar hace falta Xcode instalado, no bastan las Command Line Tools."
     ARCOS=()
-    swift build -c release "${SWIFT_FLAGS[@]}" >/dev/null
+    swift build -c release >/dev/null
 fi
-BINARIO="$(swift build -c release "${ARCOS[@]}" "${SWIFT_FLAGS[@]}" --show-bin-path)/$APP"
+BINARIO="$(swift build -c release "${ARCOS[@]}" --show-bin-path)/$APP"
 
 echo "▸ Dibujando el icono…"
 swift Tools/MakeIcon.swift >/dev/null
@@ -106,4 +100,3 @@ codesign --verify --strict "$DESTINO"
 echo "▸ Arquitecturas:"
 lipo -archs "$DESTINO/Contents/MacOS/$APP"
 echo "✓ Listo: $DESTINO"
-echo "  edición: $EDICION"

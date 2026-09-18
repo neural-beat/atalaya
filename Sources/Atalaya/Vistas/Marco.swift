@@ -80,7 +80,7 @@ struct Principal: View {
             .safeAreaInset(edge: .bottom) { Pie() }
         } detail: {
             VStack(spacing: 0) {
-                if Edicion.variosServidores { PestañasServidores() }
+                PestañasServidores()
                 Group {
                     switch cerebro.sitio {
                     case .tablero: Tablero()
@@ -303,10 +303,7 @@ struct Bienvenida: View {
                         punto("eye", t("bienvenida.p1.titulo"), t("bienvenida.p1.texto"))
                         punto("square.grid.2x2", t("bienvenida.p2.titulo"), t("bienvenida.p2.texto"))
                         punto("terminal", t("bienvenida.p3.titulo"), t("bienvenida.p3.texto"))
-                        // La edición pública todavía no trae SFTP: no se anuncia.
-                        if Edicion.archivos {
-                            punto("folder", t("bienvenida.p4.titulo"), t("bienvenida.p4.texto"))
-                        }
+                        punto("folder", t("bienvenida.p4.titulo"), t("bienvenida.p4.texto"))
                     }
                     .frame(maxWidth: 520)
 

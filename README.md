@@ -28,6 +28,15 @@ SSH, the way you already do, and reads what is there.
 - **Updates, grouped**: security, kernel, programs, libraries and the rest, with
   checkboxes. You pick what gets installed. It only ever upgrades packages that
   are already installed.
+- **Files over SFTP**: browse the server, drag files in from the Finder to
+  upload, download with a progress bar, preview with Quick Look, create folders,
+  rename and delete. Same SSH connection, no extra service. It reopens in the
+  folder you were last in.
+- **Install from a repository**: paste the address of a project with a Docker
+  Compose file. Atalaya shows which images it uses, which ports it wants and
+  whether any is already taken, and only starts it once you say so.
+- **Several servers**: each one opens as a tab, so you move between machines the
+  way you move between pages in a browser.
 
 <p align="center">
   <img src="docs/scripts.png" width="380" alt="Scripts explained by their own comments">
@@ -54,9 +63,9 @@ SSH, the way you already do, and reads what is there.
 
 ## Install
 
-**[⬇ Download Atalaya 0.1.0](https://github.com/neural-beat/atalaya/releases/latest/download/Atalaya-0.1.0.zip)**
+**[⬇ Download Atalaya 1.0.0](https://github.com/neural-beat/atalaya/releases/latest/download/Atalaya-1.0.0.zip)**
 
-> **Download `Atalaya-0.1.0.zip`, not "Source code (zip)".** The source archive
+> **Download `Atalaya-1.0.0.zip`, not "Source code (zip)".** The source archive
 > holds the code, not the app: there is no `.app` inside it.
 
 
@@ -87,13 +96,6 @@ notarisation.
 Atalaya checks GitHub once a day and tells you when a newer version is out. It
 never downloads or installs anything on its own — it points you at the release
 page. You can also check whenever you like from the About window.
-
-## In development
-
-The next release is being worked on: SFTP file management with Quick Look and
-transfer progress, safe inspection and installation of Docker Compose
-repositories, and several servers open as tabs. These features are not part of
-the first public release yet.
 
 ## Licence
 

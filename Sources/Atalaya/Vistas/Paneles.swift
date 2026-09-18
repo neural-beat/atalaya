@@ -355,9 +355,7 @@ struct PanelServidores: View {
             }
         }
         .toolbar {
-            if Edicion.variosServidores || cerebro.perfiles.isEmpty {
-                ToolbarItem { Button(t("anadir")) { nuevo = true }.help(t("anadir")) }
-            }
+            ToolbarItem { Button(t("anadir")) { nuevo = true }.help(t("anadir")) }
         }
         .onAppear {
             // Se llega aquí desde la bienvenida sin ningún servidor guardado:

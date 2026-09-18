@@ -29,6 +29,15 @@ Entra por SSH, igual que entras tú, y lee lo que hay.
 - **Actualizaciones por grupos**: seguridad, núcleo, programas, bibliotecas y el
   resto, con casillas. Eliges qué se instala. Solo actualiza paquetes que ya
   están instalados; nunca añade programas nuevos.
+- **Ficheros por SFTP**: navegas el servidor, arrastras desde el Finder para
+  subir, descargas con barra de progreso, miras con Vista Rápida, creas
+  carpetas, renombras y borras. Por la misma conexión SSH, sin montar nada más.
+  Vuelve a abrirse en la última carpeta que estabas mirando.
+- **Instalar desde un repositorio**: pegas la dirección de un proyecto con
+  Docker Compose. Atalaya te enseña qué imágenes usa, qué puertos pide y si
+  alguno está ocupado, y solo lo levanta cuando das el visto bueno.
+- **Varios servidores**: cada uno se abre en una pestaña, así que saltas de
+  máquina como saltas de página en el navegador.
 
 <p align="center">
   <img src="docs/scripts.png" width="380" alt="Los scripts explicados con sus propios comentarios">
@@ -54,9 +63,9 @@ Entra por SSH, igual que entras tú, y lee lo que hay.
 
 ## Instalación
 
-**[⬇ Descargar Atalaya 0.1.0](https://github.com/neural-beat/atalaya/releases/latest/download/Atalaya-0.1.0.zip)**
+**[⬇ Descargar Atalaya 1.0.0](https://github.com/neural-beat/atalaya/releases/latest/download/Atalaya-1.0.0.zip)**
 
-> **Descarga `Atalaya-0.1.0.zip`, no "Source code (zip)".** El archivo de código
+> **Descarga `Atalaya-1.0.0.zip`, no "Source code (zip)".** El archivo de código
 > fuente contiene el código, no la aplicación: dentro no hay ninguna `.app`.
 
 
@@ -89,13 +98,6 @@ Atalaya pregunta a GitHub una vez al día y te avisa cuando hay una versión má
 nueva. Nunca descarga ni instala nada por su cuenta: te lleva a la página de la
 publicación. También puedes comprobarlo cuando quieras desde la ventana de
 información.
-
-## En desarrollo
-
-Estamos trabajando en la próxima versión: gestión de archivos por SFTP con
-Vista Rápida y progreso de transferencias, análisis e instalación segura de
-repositorios Docker Compose y varios servidores abiertos como pestañas. Estas
-funciones todavía no forman parte de la primera versión pública.
 
 ## Licencia
 

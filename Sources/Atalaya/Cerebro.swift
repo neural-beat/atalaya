@@ -10,16 +10,7 @@ import Observation
 @Observable
 final class Cerebro {
     enum Sitio: String, CaseIterable, Identifiable {
-        /// Las secciones que la edición pública todavía no enseña.
-        static var visibles: [Sitio] {
-            allCases.filter {
-                switch $0 {
-                case .archivos: Edicion.archivos
-                case .instalar: Edicion.instalar
-                default: true
-                }
-            }
-        }
+        static var visibles: [Sitio] { allCases }
 
         case tablero, archivos, contenedores, servicios, guiones, instalar, actualizaciones, servidores
         var id: String { rawValue }
@@ -261,9 +252,6 @@ final class Cerebro {
     // Perfiles
 
     func guarda(_ perfil: Perfil, clave: String?, sudo: String?) {
-        if !Edicion.variosServidores,
-           !perfiles.isEmpty,
-           !perfiles.contains(where: { $0.id == perfil.id }) { return }
         Almacen.guarda(perfil)
         if let clave, !clave.isEmpty { Almacen.guarda(secreto: clave, para: perfil.id, tipo: .acceso) }
         if let sudo, !sudo.isEmpty { Almacen.guarda(secreto: sudo, para: perfil.id, tipo: .sudo) }
