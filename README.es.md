@@ -40,7 +40,12 @@ Entra por SSH, igual que entras tú, y lee lo que hay.
   máquina como saltas de página en el navegador.
 
 <p align="center">
+  <img src="docs/files.png" width="380" alt="Ficheros por SFTP">
   <img src="docs/scripts.png" width="380" alt="Los scripts explicados con sus propios comentarios">
+</p>
+
+<p align="center">
+  <img src="docs/containers.png" width="380" alt="Contenedores de Docker">
   <img src="docs/updates.png" width="380" alt="Actualizaciones agrupadas por tipo">
 </p>
 

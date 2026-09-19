@@ -39,7 +39,12 @@ SSH, the way you already do, and reads what is there.
   way you move between pages in a browser.
 
 <p align="center">
+  <img src="docs/files.png" width="380" alt="Files over SFTP">
   <img src="docs/scripts.png" width="380" alt="Scripts explained by their own comments">
+</p>
+
+<p align="center">
+  <img src="docs/containers.png" width="380" alt="Docker containers">
   <img src="docs/updates.png" width="380" alt="Updates grouped by kind">
 </p>
 
