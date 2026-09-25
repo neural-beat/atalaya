@@ -26,13 +26,16 @@ fi
 
 echo "▸ Compilando…"
 ARCOS=(--arch x86_64 --arch arm64)
-if ! swift build -c release "${ARCOS[@]}" >/dev/null 2>&1; then
+# No paths from this machine inside the binary: the project folder is compiled as ".".
+PATHS_MAP=(-Xswiftc -file-prefix-map -Xswiftc "$PWD=." -Xswiftc -debug-prefix-map -Xswiftc "$PWD=."
+    -Xcc "-ffile-prefix-map=$PWD=." -Xcc "-fdebug-prefix-map=$PWD=.")
+if ! swift build -c release "${PATHS_MAP[@]}" "${ARCOS[@]}" >/dev/null 2>&1; then
     echo "  ⚠ sin compilación cruzada: este paquete será solo $(uname -m)."
     echo "    Para publicar hace falta Xcode instalado, no bastan las Command Line Tools."
     ARCOS=()
-    swift build -c release >/dev/null
+    swift build -c release "${PATHS_MAP[@]}" >/dev/null
 fi
-BINARIO="$(swift build -c release "${ARCOS[@]}" --show-bin-path)/$APP"
+BINARIO="$(swift build -c release "${PATHS_MAP[@]}" "${ARCOS[@]}" --show-bin-path)/$APP"
 
 echo "▸ Dibujando el icono…"
 swift Tools/MakeIcon.swift >/dev/null
@@ -42,6 +45,8 @@ echo "▸ Armando el paquete…"
 rm -rf "$DESTINO"
 mkdir -p "$DESTINO/Contents/MacOS" "$DESTINO/Contents/Resources"
 cp "$BINARIO" "$DESTINO/Contents/MacOS/$APP"
+# Drop debug symbols: they carry the full path of every compiled file.
+strip -S -x "$DESTINO/Contents/MacOS/$APP"
 cp build/$APP.icns "$DESTINO/Contents/Resources/$APP.icns"
 
 cat > "$DESTINO/Contents/Info.plist" <<PLIST
@@ -99,4 +104,8 @@ codesign --verify --strict "$DESTINO"
 
 echo "▸ Arquitecturas:"
 lipo -archs "$DESTINO/Contents/MacOS/$APP"
+if grep -aq "$HOME" "$DESTINO/Contents/MacOS/$APP"; then
+    echo "✗ The binary contains the home folder path; not packaging it." >&2
+    exit 1
+fi
 echo "✓ Listo: $DESTINO"
